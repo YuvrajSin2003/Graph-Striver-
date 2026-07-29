@@ -10,6 +10,5 @@ public class DFS {
                 DFS(neigh , adj visited , result);
             }
         }
-        return result;
     }
 }
