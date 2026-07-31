@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class CycleUndirected {
 
     //*********************** DFS Approach ***************************** 
@@ -24,4 +26,25 @@ public class CycleUndirected {
             }
         }
     }
+        //*********************** BFS Approach ***************************** 
+
+        public boolean cycleBFS(int src , boolean[] visited , List<List<Integer>> adj){
+            Queue<int[]> queue = new LinkedList<>();
+            queue.add(new int[]{src , -1});
+            visited[src] = true;
+            while(!queue.isEmpty()){
+                int[] curr = queue.poll();
+                int node = curr[0] , parent = curr[1];
+                for(int neigh :adj.get(node)){
+                    if(!visited[node]){
+                        visited[neigh] = true;
+                        queue.add(new int[]{neigh , node});
+                    }else if(neigh != parent){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
 }
